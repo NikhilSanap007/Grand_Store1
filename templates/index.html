@@ -1,0 +1,245 @@
+{% load static %}
+{% static "images" as baseUrl %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Store</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+
+    <input type="checkbox" name="" id="toggler">
+    <label for="toggler" class="fas fa-bars"></label>
+	<h5><a href="#" class="logo">Grand Store<br><span>Good Quality Product</span></a></h5>
+
+    <nav class="navbar">
+        <a href="#about"><b>About</b></a>
+
+        {% if user.is_authenticated %}
+        <a><b>Hello, {{user.first_name}}</b></a>
+        <a href="accounts/logout"><b>Logout</b></a>
+        <a href="cart_detail" class="fas fa-shopping-cart"><b> Cart <span class="fa fa-text fa-1x fa-border icon-grey badge" data-count="2" style="font-weight:bolder;color:#7D9FFF">{{request.session.cart|length}}</span></b></a>
+
+        {% else %}
+        <a href="accounts/login"><b>Login</b></a>
+        <a href="accounts/signup"><b>Register</b></a>
+
+        {% endif %}
+    </nav>
+	
+</header>
+
+<!-- header section ends -->
+
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+		
+</section>
+<!DOCTYPE html>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <h1 class="heading"><span> about </span> us </h1>
+
+    <div class="row">
+
+        <div class="video-container">
+            <video src="{% static 'images/about-vid.mp4' %}" loop autoplay muted></video>
+        </div>
+
+        <div class="content">
+            <h3 style="color:green">Thanks for Chosing Us</h3>
+            <p style="color:black"><b>This is a web portal of Grand Store Computers Sales Private Limited, a young and vibrant company that aims to provide good quality branded IT products online.
+Grand Store is one of the leading IT distribution company in Pune.</b></p>
+			<p style="color:black"><b>To provide customers superior quality and well-known brand products with best support & excellent after sale services are company’s motto.
+Currently Grand Store is acting as the authorized dealer for some global leading brands.</b></p>
+			<p style="color:black"><b>We also offer an array of world renowned brands like Dell, HP, Intel, Lenovo, Logitech, Microsoft, Razer, Samsung to name a few.
+Grand Store always puts effort to make such business model.
+Bringing the latest technologies along with the best price-performance combinations to customers have always been a major concern for Grand Store.</b></p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- prodcuts section starts  -->
+
+<section class="products" id="products">
+
+    <h1 class="heading"> Computer <span>Products</span> </h1>
+
+    <div class="box-container">
+
+        {% for part in pro %}
+
+ <div class="box">
+            <span class="discount"></span>
+            <div class="image">
+                <img src="{{part.img.url}}" alt="">
+                <div class="icons">
+
+                    <a href="{% url 'cart_add' part.id %}" class="cart-btn">add to cart</a>
+
+                </div>
+            </div>
+            <div class="content">
+                <h3>{{part.name}}</h3>
+                <div class="price"> ₹{{part.price}} <span>₹{{part.oprice}}</span> </div>
+            </div>
+        </div>
+
+                {% endfor %}
+
+
+
+	</div>
+</section>
+
+<!-- prodcuts section ends -->
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+<h1 class="heading"> customer's <span>rating</span> </h1>
+
+<div class="box-container">
+
+    <div class="box">
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+		
+        <div class="user">
+            <img src="{% static 'images/pic-1.png' %}" alt="">
+            <div class="user-info">
+                <h3>Vaibhav Bhosale</h3>
+				<span>happy customer</span>
+            </div>
+        </div>
+        <span style="color:#7D9FFF" class="fas fa-quote-right"></span>
+    </div>
+
+    <div class="box">
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+			<i class="fas fa-star"></i>
+        </div>
+        
+        <div class="user">
+            <img src="{% static 'images/pic-2.png' %}" alt="">
+            <div class="user-info">
+                <h3>Rohan Mhaske</h3>
+                <span>Satisfied customer</span>
+            </div>
+        </div>
+        <span style="color:#7D9FFF" class="fas fa-quote-right"></span>
+    </div>
+
+    <div class="box">
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        
+        <div class="user">
+            <img src="{% static 'images/pic-3.png' %}" alt="">
+            <div class="user-info">
+                <h3>Rushi Gande</h3>
+                <span>happy customer</span>
+            </div>
+        </div>
+        <span style="color:#7D9FFF" class="fas fa-quote-right"></span>
+    </div>
+
+</div>
+    
+</section>
+
+<!-- review section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+    <h1 class="heading"> <span> contact </span> us </h1>
+
+    <div class="row">
+
+        <form action="/contact" method="post">                          <!-- For Database -->
+
+            <form action="/ContactUs" method="post">                    <!-- For sending mail -->
+
+                {% csrf_token %}
+
+            {% for message in messages %}
+
+            {% if message %}
+                <h2><label style="color:red">Fill the details properly</label></h2>
+            {% else %}
+                <h2><label style="color:green">Sent Successfully</label></h2>
+            {% endif %}
+            
+            {% endfor %}
+
+            <input name="cname" type="text" placeholder="Name" class="box">
+            <input name="cemail" type="email" placeholder="Email" class="box">
+            <input name="cphone" type="tel" placeholder="Contact Number" class="box">
+            <textarea name="cmsg" class="box" placeholder="Message" id="" cols="30" rows="10"></textarea>
+            <input style="#" type="submit" value="send message" class="btn">
+
+            </form>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- contact section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="credit" style="color:black"> Credit goes to <span><b> Nikhil Sanap </b></span> | all rights reserved </div>
+
+</section>
+
+<!-- footer section ends -->
+
+</body>
+</html>
