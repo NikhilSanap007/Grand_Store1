@@ -5,11 +5,11 @@ from django.db import models
 class parts(models.Model):
 
     name = models.CharField(max_length=120)
-    img = models.ImageField(upload_to='pics')
+    image = models.ImageField(upload_to='pics')
     price = models.IntegerField()
     oprice = models.IntegerField()
 
-    objects = [name, img, price, oprice]
+    objects = [name, image, price, oprice]
 
     def __str__(self):
         return self.name
